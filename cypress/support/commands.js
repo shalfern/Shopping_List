@@ -25,7 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 
-import {AddButton, CreateButton, ListTitleInput, ShoppingListName, SubmitButton} from "./ShoppingList.PageObject";
+import {AddButton, CreateButton, ListTitleInput, SubmitButton} from "./ShoppingList.PageObject";
 
 cy.CreateShoppingList = function () {
     cy.get(CreateButton).click();
@@ -37,9 +37,7 @@ cy.CreateShoppingList = function () {
 }
 
 cy.AddItemToShoppingList = function () {
-    cy.get('li').first().should('contain.text', ShoppingListName)
-    cy.get('li').first().click();
-    cy.wait(2000);
+    cy.CreateShoppingList();
     cy.scrollTo('bottom')
     cy.get('input[type=text]').eq(1).type('Grapes');
     // index 1 because there was 2 input types on the test
